@@ -100,14 +100,18 @@
     "url": "https://github.com/CaoMeiYouRen/sharp-cloud-uploader/issues"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.698.0",
     "@hono/node-server": "^1.13.7",
+    "@vercel/blob": "^0.26.0",
     "await-to-js": "^3.0.0",
     "dayjs": "^1.11.13",
     "dotenv": "^16.4.5",
+    "file-type": "^19.6.0",
     "fs-extra": "^11.2.0",
     "hono": "^4.6.11",
     "isomorphic-unfetch": "^4.0.2",
     "lodash-es": "^4.17.21",
+    "sharp": "^0.33.5",
     "tslib": "^2.8.1",
     "winston": "^3.17.0",
     "winston-daily-rotate-file": "^5.0.0"
