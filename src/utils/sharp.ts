@@ -6,13 +6,13 @@ export type Format = 'jpeg' | 'jpg' | 'png' | 'webp' | 'jp2' | 'tiff' | 'avif' |
 /**
  * 压缩图片
  * @param input 输入图片
- * @param format 输出格式 默认 jpeg
+ * @param format 输出格式
  * @param quality 压缩质量 默认 80
  * @returns 压缩后的图片
  */
 export async function compressImage(
     input: Buffer,
-    format: Format = 'jpeg',
+    format: Format,
     quality: number = 80,
 ): Promise<Buffer> {
 

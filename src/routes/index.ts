@@ -3,12 +3,22 @@ import { Context, Hono } from 'hono'
 import { env } from 'hono/adapter'
 import dayjs from 'dayjs'
 import { BlankInput } from 'hono/types'
+import { bearerAuth } from 'hono/bearer-auth'
 import { Bindings } from '../types'
 import { getFileType, getFileExtension } from '@/utils/file'
 import { getHeaders } from '@/utils/referers'
-import { StorageFactory } from '@/libs/storage'
-import { compressImage } from '@/utils/sharp'
+import { StorageFactory } from '@/libs/storage-factory'
+import { compressImage, Format } from '@/utils/sharp'
+
 const app = new Hono<{ Bindings: Bindings }>()
+
+app.on('POST', ['/upload-from-url', '/upload-from-body'], (c, next) => {
+    const authToken = env(c).AUTH_TOKEN
+    if (authToken) { // 如果设置了授权密钥，则进行 Bearer 认证，否则跳过
+        return bearerAuth({ token: authToken })(c, next)
+    }
+    return next()
+})
 
 const handleUpload = async (c: Context<{ Bindings: Bindings }, string, BlankInput>, body: ArrayBuffer, contentType: string) => {
     const envValue = env(c)
@@ -26,9 +36,11 @@ const handleUpload = async (c: Context<{ Bindings: Bindings }, string, BlankInpu
     }
 
     const extension = getFileExtension(contentType)
-    const key = `${BUCKET_PREFIX}${dayjs().format('YYYYMMDDHHmmssSSS')}-${Math.random().toString(36).slice(2, 9)}.${extension}`
+    const timestamp = dayjs().format('YYYYMMDDHHmmssSSS') // 时间戳
+    const random = Math.random().toString(36).slice(2, 9) // 随机字符串，避免文件名冲突
+    const key = `${BUCKET_PREFIX}${timestamp}-${random}.${extension}` // 文件名
     const storage = StorageFactory.getStorage(STORAGE_TYPE)
-    const compressedBody = await compressImage(Buffer.from(body)) // 压缩图片
+    const compressedBody = await compressImage(Buffer.from(body), extension as Format, 90) // 压缩图片
     const result = await storage.upload(compressedBody, key, contentType)
     return c.json(result)
 }
@@ -41,8 +53,8 @@ app.post('/upload-from-url', async (c) => {
     }
     const headers = getHeaders(url)
     const response = await fetch(url, { headers })
-    const contentType = response.headers.get('Content-Type')
     const body = await response.arrayBuffer()
+    const contentType = response.headers.get('Content-Type') || await getFileType(Buffer.from(body)) // 如果没有Content-Type头，尝试从body中检测
     return handleUpload(c, body, contentType)
 })
 
