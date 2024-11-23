@@ -39,6 +39,8 @@
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FCaoMeiYouRen%2Fsharp-cloud-uploader.git)
 
+> 如果使用 `Vercel Blob` 作为存储，请参考 [Vercel Blob](https://vercel.com/docs/storage/vercel-blob) 有关文档部署。
+
 ### Docker 镜像
 
 支持两种注册表：
@@ -74,7 +76,9 @@ wget https://raw.githubusercontent.com/CaoMeiYouRen/sharp-cloud-uploader/refs/he
 vim docker-compose.yml  # 也可以是你喜欢的编辑器
 ```
 
-> 在公网部署时建议设置 AUTH_TOKEN 环境变量，以避免被他人滥用
+> 在公网部署时建议设置 AUTH_TOKEN 环境变量，以避免被他人滥用。
+>
+> 请修改 docker-compose.yml 文件中的 environment 字段修改环境变量。
 
 启动
 
@@ -102,6 +106,8 @@ pnpm start
 
 在浏览器中打开 `http://{Server IP}:3000` 即可查看结果
 
+> 请修改 .env 文件修改环境变量。
+
 ## 👨‍💻 使用
 
 如果在本地部署，基础路径为 `http://localhost:3000`
@@ -112,13 +118,9 @@ pnpm start
 
 如果基础路径为 `https://example.vercel.app`，则 `//upload-from-url` 的完整路径为 `https://example.vercel.app/upload-from-url`
 
-### 接口说明
+### 1. 上传图片接口
 
-# 接口说明文档
-
-## 1. 上传图片接口
-
-### 1.1 从 URL 上传图片
+#### 1.1 从 URL 上传图片
 
 接口路径: `/upload-from-url`
 
@@ -152,7 +154,7 @@ pnpm start
 }
 ```
 
-### 1.2 从请求体上传图片
+#### 1.2 从请求体上传图片
 
 接口路径: `/upload-from-body`
 
@@ -183,9 +185,9 @@ curl -X POST -H "Content-Type: image/jpeg" --data-binary @image.jpg http://local
 }
 ```
 
-## 2. 代码示例
+### 2. 代码示例
 
-### 2.1 使用 fetch 从 URL 上传图片
+#### 2.1 使用 fetch 从 URL 上传图片
 
 ```ts
 const uploadFromUrl = async () => {
@@ -204,7 +206,7 @@ const uploadFromUrl = async () => {
 uploadFromUrl();
 ```
 
-### 2.2 使用 `fetch` 从请求体上传图片
+#### 2.2 使用 `fetch` 从请求体上传图片
 
 ```javascript
 const uploadFromBody = async () => {
@@ -247,6 +249,7 @@ LOGFILES=false
 # LOG_LEVEL=http
 
 # 最大请求体大小(字节)，默认 100MB
+# 在部署到 Vercel Functions 时，受 Vercel Functions 的限制，通过请求体上传时最大不超过 4.5 MB（通过 url 上传则不受限制），详见 https://vercel.com/docs/storage/vercel-blob/server-upload
 # MAX_BODY_SIZE=104857600
 
 # 授权密钥（Bearer 认证）。可选，如果设置，则所有请求都需要携带此密钥
@@ -256,6 +259,7 @@ AUTH_TOKEN=
 # BUCKET_PREFIX=
 
 # 存储类型，可选值：s3, vercel-blob
+# 如果想存储到 R2，请使用 R2 的 S3 兼容接口，参考 https://developers.cloudflare.com/r2/api/s3/api
 # STORAGE_TYPE=s3
 
 # S3 基础 URL

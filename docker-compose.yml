@@ -3,8 +3,8 @@ version: "3"
 services:
   server:
     build: .
-    # container_name: 'hono-template'
-    # image: ${DOCKER_IMAGE:-caomeiyouren/hono-template}
+    # container_name: 'sharp-cloud-uploader'
+    # image: ${DOCKER_IMAGE:-caomeiyouren/sharp-cloud-uploader}
     restart: always
     ports:
       - "3000:3000"
