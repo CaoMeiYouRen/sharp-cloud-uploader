@@ -1,5 +1,6 @@
 import { Buffer } from 'buffer'
-import sharp from 'sharp'
+import type { Sharp } from 'sharp'
+import { IS_CLOUDFLARE_WORKERS } from '@/env'
 
 export type Format = 'jpeg' | 'jpg' | 'png' | 'webp' | 'jp2' | 'tiff' | 'avif' | 'heif' | 'jxl'
 
@@ -15,12 +16,16 @@ export async function compressImage(
     format: Format,
     quality: number = 80,
 ): Promise<Buffer> {
-
+    if (IS_CLOUDFLARE_WORKERS) {
+        // 由于 Cloudflare Workers 不支持使用 sharp 库，所以直接返回原图
+        return input
+    }
+    const sharp = (await import('sharp')).default // 动态导入 sharp 库，以避免在 Cloudflare Workers 中使用
     // 读取输入图片
     const image = sharp(input)
 
     // 根据输出格式进行压缩
-    let compressedImage: sharp.Sharp
+    let compressedImage: Sharp
     switch (format) {
         case 'jpg':
         case 'jpeg':

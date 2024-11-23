@@ -39,7 +39,17 @@
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FCaoMeiYouRen%2Fsharp-cloud-uploader.git)
 
-> 如果使用 `Vercel Blob` 作为存储，请参考 [Vercel Blob](https://vercel.com/docs/storage/vercel-blob) 有关文档部署。
+> 如果使用 `Vercel Blob` 作为存储，请参考 [Vercel Blob](https://vercel.com/docs/storage/vercel-blob) 有关文档。
+
+### Cloudflare Workers 部署
+
+点击下方按钮一键部署到 Cloudflare Workers。
+
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/CaoMeiYouRen/sharp-cloud-uploader)
+
+**注意：由于 Cloudflare Workers 不支持 sharp，所以在 Cloudflare Workers 部署时，图片不会经过 sharp 压缩，仅转存原图。**
+
+> 如果想存储到 R2，请使用 R2 的 S3 兼容接口，请参考 [S3 API compatibility](https://developers.cloudflare.com/r2/api/s3/api) 有关文档。
 
 ### Docker 镜像
 
@@ -249,7 +259,8 @@ LOGFILES=false
 # LOG_LEVEL=http
 
 # 最大请求体大小(字节)，默认 100MB
-# 在部署到 Vercel Functions 时，受 Vercel Functions 的限制，通过请求体上传时最大不超过 4.5 MB（通过 url 上传则不受限制），详见 https://vercel.com/docs/storage/vercel-blob/server-upload
+# 受 Vercel Functions 的限制，通过请求体上传时最大不超过 4.5 MB（通过 url 上传则不受限制），详见 https://vercel.com/docs/storage/vercel-blob/server-upload
+# 受 Cloudflare Workers 的限制，通过请求体上传时最大不超过 100 MB（通过 url 上传则不受限制），详见 https://developers.cloudflare.com/workers/platform/limits
 # MAX_BODY_SIZE=104857600
 
 # 授权密钥（Bearer 认证）。可选，如果设置，则所有请求都需要携带此密钥
