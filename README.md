@@ -20,7 +20,7 @@
 </p>
 
 
-> 一个使用 sharp 进行图片压缩，并上传文件到 R2、S3 或 Vercel Blob 的云函数。支持 Vercel Functions 部署
+> 一个使用 sharp 进行图片压缩，并上传文件到 R2、S3 或 Vercel Blob 的云函数。支持 Vercel Functions/Cloudflare Workers/Docker 等方式部署。
 
 ## 🏠 主页
 
