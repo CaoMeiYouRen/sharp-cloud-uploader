@@ -29,16 +29,256 @@
 
 - node >=18
 
-## 🚀 安装
+## 🚀 部署
+
+### Vercel 部署（推荐）
+
+> 如果遇到了点击 `推送` 按钮长时间无响应/超时的问题，请在 Vercel 控制台中将环境变量`NODEJS_HELPERS`设置为 `0` 后，重新部署，再进行测试。
+
+ 点击以下按钮一键部署到 Vercel。
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FCaoMeiYouRen%2Fsharp-cloud-uploader.git)
+
+### Docker 镜像
+
+支持两种注册表：
+
+- Docker Hub: [`caomeiyouren/sharp-cloud-uploader`](https://hub.docker.com/r/caomeiyouren/sharp-cloud-uploader)
+- GitHub: [`ghcr.io/caomeiyouren/sharp-cloud-uploader`](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/pkgs/container/sharp-cloud-uploader)
+
+支持以下架构：
+
+- `linux/amd64`
+- `linux/arm64`
+
+有以下几种 tags：
+
+| Tag            | 描述     | 举例          |
+| :------------- | :------- | :------------ |
+| `latest`       | 最新     | `latest`      |
+| `{YYYY-MM-DD}` | 特定日期 | `2024-06-07`  |
+| `{sha-hash}`   | 特定提交 | `sha-0891338` |
+| `{version}`    | 特定版本 | `1.2.3`       |
+
+### Docker Compose 部署
+
+下载 [docker-compose.yml](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/blob/master/docker-compose.yml)
 
 ```sh
-npm install
+wget https://raw.githubusercontent.com/CaoMeiYouRen/sharp-cloud-uploader/refs/heads/master/docker-compose.yml
 ```
+
+检查有无需要修改的配置
+
+```sh
+vim docker-compose.yml  # 也可以是你喜欢的编辑器
+```
+
+> 在公网部署时建议设置 AUTH_TOKEN 环境变量，以避免被他人滥用
+
+启动
+
+```sh
+docker-compose up -d
+```
+
+在浏览器中打开 `http://{Server IP}:3000` 即可查看结果
+
+### Node.js 部署
+
+确保本地已安装 Node.js 和 pnpm。
+
+```sh
+# 下载源码
+git clone https://github.com/CaoMeiYouRen/sharp-cloud-uploader.git  --depth=1
+cd sharp-cloud-uploader
+# 安装依赖
+pnpm i --frozen-lockfile
+# 构建项目
+pnpm build
+# 启动项目
+pnpm start
+```
+
+在浏览器中打开 `http://{Server IP}:3000` 即可查看结果
 
 ## 👨‍💻 使用
 
-```sh
-npm run start
+如果在本地部署，基础路径为 `http://localhost:3000`
+
+在服务器或云函数部署则为  `http(s)://{Server IP}`。
+
+例如：
+
+如果基础路径为 `https://example.vercel.app`，则 `//upload-from-url` 的完整路径为 `https://example.vercel.app/upload-from-url`
+
+### 接口说明
+
+# 接口说明文档
+
+## 1. 上传图片接口
+
+### 1.1 从 URL 上传图片
+
+接口路径: `/upload-from-url`
+
+请求方法: `POST`
+
+请求参数:
+
+- `url`: 图片的 URL  地址 (必填)
+
+请求示例:
+
+```json
+{
+    "url": "https://example.com/image.jpg"
+}
+```
+
+响应示例:
+
+```json
+{
+    "url": "https://example.com/bucket-prefix/20231001123456789-abcdefg.jpg"
+}
+```
+
+错误响应示例:
+
+```json
+{
+    "error": "URL is required"
+}
+```
+
+### 1.2 从请求体上传图片
+
+接口路径: `/upload-from-body`
+
+请求方法: `POST`
+
+请求参数:
+
+- 图片数据: 二进制数据 (必填)
+
+请求示例:
+
+```bash
+curl -X POST -H "Content-Type: image/jpeg" --data-binary @image.jpg http://localhost:3000/upload-from-body
+```
+
+响应示例:
+
+```json
+{
+    "url": "https://example.com/bucket-prefix/20231001123456789-abcdefg.jpg"
+}
+```
+
+错误响应示例:
+```json
+{
+    "error": "Invalid image format"
+}
+```
+
+## 2. 代码示例
+
+### 2.1 使用 fetch 从 URL 上传图片
+
+```ts
+const uploadFromUrl = async () => {
+    const url = 'https://example.com/image.jpg';
+    const response = await fetch('http://localhost:3000/upload-from-url', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ url })
+    });
+    const data = await response.json();
+    console.log(data);
+};
+
+uploadFromUrl();
+```
+
+### 2.2 使用 `fetch` 从请求体上传图片
+
+```javascript
+const uploadFromBody = async () => {
+    const imageFile = document.getElementById('image-file').files[0];
+    const reader = new FileReader();
+    reader.onload = async () => {
+        const response = await fetch('http://localhost:3000/upload-from-body', {
+            method: 'POST',
+            headers: {
+                'Content-Type': imageFile.type
+            },
+            body: reader.result
+        });
+        const data = await response.json();
+        console.log(data);
+    };
+    reader.readAsArrayBuffer(imageFile);
+};
+
+uploadFromBody();
+```
+
+### 环境变量配置
+
+请参考 [.env](./src/.env) 文件中的注释。
+
+```ini
+# 运行端口
+PORT=3000
+
+# 超时时间(ms)
+# 如果在 vercel 中运行，则还要修改 vercel.json 中的 maxDuration 字段(单位：秒)
+TIMEOUT=60000
+
+NODEJS_HELPERS=0
+# 是否写入日志到文件
+LOGFILES=false
+
+# 日志级别
+# LOG_LEVEL=http
+
+# 最大请求体大小(字节)，默认 100MB
+# MAX_BODY_SIZE=104857600
+
+# 授权密钥（Bearer 认证）。可选，如果设置，则所有请求都需要携带此密钥
+AUTH_TOKEN=
+
+# 文件名前缀
+# BUCKET_PREFIX=
+
+# 存储类型，可选值：s3, vercel-blob
+# STORAGE_TYPE=s3
+
+# S3 基础 URL
+# S3_BASE_URL=
+
+# S3 区域
+# S3_REGION=
+
+# S3 存储桶名称
+# S3_BUCKET_NAME=
+
+# S3 访问密钥 ID
+# S3_ACCESS_KEY_ID=
+
+# S3 秘密访问密钥
+# S3_SECRET_ACCESS_KEY=
+
+# S3 端点
+# S3_ENDPOINT=
+
+# Vercel Blob 令牌，参考 https://vercel.com/docs/storage/vercel-blob
+# VERCEL_BLOB_TOKEN=
+
 ```
 
 ## 🛠️ 开发
