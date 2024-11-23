@@ -1,5 +1,12 @@
 # sharp-cloud-uploader
 
+## [1.0.1](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.0.0...v1.0.1) (2024-11-23)
+
+
+### 🐛 Bug 修复
+
+* 更新上传方法返回类型；在上传方法返回类型中添加 `success` 字段，表示上传是否成功 ([ac9d96a](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/commit/ac9d96a))
+
 # 1.0.0 (2024-11-23)
 
 
