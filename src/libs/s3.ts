@@ -27,7 +27,7 @@ export class S3Storage extends Storage {
         })
     }
 
-    async upload(buffer: Buffer, filename: string, contentType?: string): Promise<{ url: string, success: boolean }> {
+    async upload(buffer: Buffer, filename: string, contentType?: string): Promise<{ url: string }> {
         // S3 上传逻辑
         const params: PutObjectCommandInput = {
             Bucket: process.env.S3_BUCKET_NAME,
@@ -39,6 +39,6 @@ export class S3Storage extends Storage {
         const command = new PutObjectCommand(params)
         await this.s3Client.send(command)
         const url = new URL(filename, S3_BASE_URL)
-        return { url: url.toString(), success: true }
+        return { url: url.toString() }
     }
 }

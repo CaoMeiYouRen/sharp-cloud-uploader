@@ -155,7 +155,9 @@ pnpm start
 
 ```json
 {
-    "url": "https://example.com/bucket-prefix/20231001123456789-abcdefg.jpg"
+    "url": "https://example.com/bucket-prefix/20231001123456789-abcdefg.jpg",
+    "success": true,
+    "status": 200
 }
 ```
 
@@ -163,7 +165,8 @@ pnpm start
 
 ```json
 {
-    "error": "URL is required"
+    "status": 400,
+    "message": "URL is required"
 }
 ```
 
@@ -187,14 +190,17 @@ curl -X POST -H "Content-Type: image/jpeg" --data-binary @image.jpg http://local
 
 ```json
 {
-    "url": "https://example.com/bucket-prefix/20231001123456789-abcdefg.jpg"
+    "url": "https://example.com/bucket-prefix/20231001123456789-abcdefg.jpg",
+    "success": true,
+    "status": 200
 }
 ```
 
 错误响应示例:
 ```json
 {
-    "error": "Invalid image format"
+    "status": 400,
+    "message": "Invalid image format"
 }
 ```
 

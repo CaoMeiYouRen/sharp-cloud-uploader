@@ -42,7 +42,7 @@ const handleUpload = async (c: Context<{ Bindings: Bindings }, string, BlankInpu
     const storage = StorageFactory.getStorage(STORAGE_TYPE)
     const compressedBody = await compressImage(Buffer.from(body), extension as Format, 90) // 压缩图片
     const result = await storage.upload(compressedBody, key, contentType)
-    return c.json(result)
+    return c.json({ ...result, success: true, status: 200 }, 200)
 }
 
 // 从URL转存图片
