@@ -1,5 +1,12 @@
 # sharp-cloud-uploader
 
+## [1.0.2](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.0.1...v1.0.2) (2024-11-23)
+
+
+### 🐛 Bug 修复
+
+* **libs:** 简化上传方法返回值；修复文档中的错误响应示例 ([fb90e74](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/commit/fb90e74))
+
 ## [1.0.1](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.0.0...v1.0.1) (2024-11-23)
 
 
