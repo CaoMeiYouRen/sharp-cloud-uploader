@@ -39,7 +39,7 @@ const handleUpload = async (c: Context<{ Bindings: Bindings }, string, BlankInpu
     const timestamp = dayjs().format('YYYYMMDDHHmmssSSS') // 时间戳
     const random = Math.random().toString(36).slice(2, 9) // 随机字符串，避免文件名冲突
     const key = `${BUCKET_PREFIX}${timestamp}-${random}.${extension}` // 文件名
-    const storage = StorageFactory.getStorage(STORAGE_TYPE)
+    const storage = StorageFactory.getStorage(STORAGE_TYPE, envValue)
     const compressedBody = await compressImage(Buffer.from(body), extension as Format, 90) // 压缩图片
     const result = await storage.upload(compressedBody, key, contentType)
     return c.json({ ...result, success: true, status: 200 }, 200)

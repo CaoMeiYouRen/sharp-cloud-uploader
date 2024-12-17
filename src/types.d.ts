@@ -31,4 +31,6 @@ export type Bindings = {
     S3_ENDPOINT: string
     // Vercel Blob 令牌
     VERCEL_BLOB_TOKEN: string
+    // Vercel Blob 读写令牌
+    BLOB_READ_WRITE_TOKEN: string
 }
