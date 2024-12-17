@@ -30,7 +30,7 @@ export class S3Storage extends Storage {
     async upload(buffer: Buffer, filename: string, contentType?: string): Promise<{ url: string }> {
         // S3 上传逻辑
         const params: PutObjectCommandInput = {
-            Bucket: process.env.S3_BUCKET_NAME,
+            Bucket: S3_BUCKET_NAME,
             Key: filename,
             Body: buffer,
             ContentType: contentType || await getFileType(buffer) || 'application/octet-stream',
