@@ -52,7 +52,7 @@
 
 **注意：由于 Cloudflare Workers 不支持 sharp，所以在 Cloudflare Workers 部署时，图片不会经过 sharp 压缩，仅转存原图。**
 
-> 如果想存储到 R2，请使用 R2 的 S3 兼容接口，请参考 [S3 API compatibility](https://developers.cloudflare.com/r2/api/s3/api) 有关文档。
+> 如果想存储到 R2，请将 `STORAGE` 设置为 `r2`，并修改 wrangler.toml 中的 r2_buckets 相关配置。
 
 ### Docker 镜像
 
