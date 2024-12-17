@@ -51,6 +51,10 @@ app.post('/upload-from-url', async (c) => {
     if (!url) {
         return c.json({ error: 'URL is required' }, 400)
     }
+    const S3_BASE_URL = env(c).S3_BASE_URL
+    if (S3_BASE_URL && url.startsWith(S3_BASE_URL)) { // 如果已经保存到 S3，直接返回
+        return c.json({ url, status: 200 }, 200)
+    }
     const headers = getHeaders(url)
     const response = await fetch(url, { headers })
     const body = await response.arrayBuffer()
