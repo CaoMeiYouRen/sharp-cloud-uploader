@@ -1,5 +1,12 @@
 # sharp-cloud-uploader
 
+## [1.1.1](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.1.0...v1.1.1) (2024-12-17)
+
+
+### 🐛 Bug 修复
+
+* **routes:** 支持从多个存储服务返回文件链接 ([dcfd9c0](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/commit/dcfd9c0))
+
 # [1.1.0](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.0.2...v1.1.0) (2024-12-17)
 
 
