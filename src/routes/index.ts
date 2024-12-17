@@ -58,14 +58,14 @@ app.post('/upload-from-url', async (c) => {
     const headers = getHeaders(url)
     const response = await fetch(url, { headers })
     const body = await response.arrayBuffer()
-    const contentType = response.headers.get('Content-Type') || await getFileType(Buffer.from(body)) // 如果没有Content-Type头，尝试从body中检测
+    const contentType = response.headers.get('Content-Type') || await getFileType(Buffer.from(body)) || 'application/octet-stream' // 如果没有Content-Type头，尝试从body中检测
     return handleUpload(c, body, contentType)
 })
 
 // 从请求body中转存图片
 app.post('/upload-from-body', async (c) => {
     const body = await c.req.arrayBuffer()
-    const contentType = c.req.header('Content-Type') || await getFileType(Buffer.from(body)) // 如果没有Content-Type头，尝试从body中检测
+    const contentType = c.req.header('Content-Type') || await getFileType(Buffer.from(body)) || 'application/octet-stream' // 如果没有Content-Type头，尝试从body中检测
     return handleUpload(c, body, contentType)
 })
 

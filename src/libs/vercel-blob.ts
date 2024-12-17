@@ -20,7 +20,7 @@ export class VercelBlobStorage extends Storage {
         const { url } = await put(filename, buffer, {
             token: this.env.VERCEL_BLOB_TOKEN || this.env.BLOB_READ_WRITE_TOKEN,
             access: 'public',
-            contentType: contentType || await getFileType(buffer) || 'application/octet-stream',
+            contentType,
             addRandomSuffix: false,
         })
         return { url }

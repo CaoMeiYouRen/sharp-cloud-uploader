@@ -32,7 +32,7 @@ export class S3Storage extends Storage {
             Bucket: this.env.S3_BUCKET_NAME,
             Key: filename,
             Body: buffer,
-            ContentType: contentType || await getFileType(buffer) || 'application/octet-stream',
+            ContentType: contentType,
         }
 
         const command = new PutObjectCommand(params)

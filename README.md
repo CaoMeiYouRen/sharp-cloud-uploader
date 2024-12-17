@@ -278,8 +278,9 @@ AUTH_TOKEN=
 # 文件名前缀
 # BUCKET_PREFIX=
 
-# 存储类型，可选值：s3, vercel-blob
-# 如果想存储到 R2，请使用 R2 的 S3 兼容接口，参考 https://developers.cloudflare.com/r2/api/s3/api
+# 存储类型，可选值：s3, r2, vercel-blob
+# 如果服务部署在 Cloudflare Workers，并且想要存储到 R2，则可以设置为 'r2'，此时需要修改 wrangler.toml 中的 r2_buckets 相关配置；
+# 如果服务部署在其他平台，想要存储到 R2，请使用 R2 的 S3 兼容接口，参考 https://developers.cloudflare.com/r2/api/s3/api，此时设置为 's3'
 # STORAGE_TYPE=s3
 
 # S3 基础 URL
@@ -303,6 +304,8 @@ AUTH_TOKEN=
 # Vercel Blob 令牌，参考 https://vercel.com/docs/storage/vercel-blob
 # VERCEL_BLOB_TOKEN=
 
+# R2 基础 URL，仅 Cloudflare Workers 绑定 Cloudflare R2 Storage 可用
+# R2_BASE_URL=
 ```
 
 ## 🛠️ 开发
