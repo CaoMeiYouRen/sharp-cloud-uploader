@@ -1,6 +1,6 @@
 {
   "name": "sharp-cloud-uploader",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "一个使用 sharp 进行图片压缩，并上传文件到 R2、S3 或 Vercel Blob 的云函数。支持 Vercel Functions/Cloudflare Workers/Docker 等方式部署。",
   "author": "CaoMeiYouRen",
   "private": true,

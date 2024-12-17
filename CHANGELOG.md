@@ -1,5 +1,18 @@
 # sharp-cloud-uploader
 
+# [1.1.0](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.0.2...v1.1.0) (2024-12-17)
+
+
+### ✨ 新功能
+
+* **storage:** 添加对 R2 存储的支持 ([3e7c9ed](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/commit/3e7c9ed))
+* 将 S3 /Vercel Blob 配置从环境变量迁移到 Bindings 对象 ([1e4d069](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/commit/1e4d069))
+
+
+### 🐛 Bug 修复
+
+* **routes:** add S3 URL check before upload ([a3a078f](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/commit/a3a078f))
+
 ## [1.0.2](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.0.1...v1.0.2) (2024-11-23)
 
 
