@@ -2,7 +2,7 @@ import { Buffer } from 'buffer'
 import type { Sharp } from 'sharp'
 import { IS_CLOUDFLARE_WORKERS } from '@/env'
 
-export type Format = 'jpeg' | 'jpg' | 'png' | 'webp' | 'jp2' | 'tiff' | 'avif' | 'heif' | 'jxl'
+export type Format = 'jpeg' | 'jpg' | 'png' | 'webp' | 'jp2' | 'tiff' | 'avif' | 'heif' | 'jxl' | 'svg'
 
 /**
  * 压缩图片
@@ -76,6 +76,8 @@ export async function compressImage(
                 quality, // 压缩质量
             })
             break
+        case 'svg':
+            return input // SVG 格式不支持压缩，直接返回原图
         default:
             // 如果不支持压缩就保持原样
             compressedImage = image
