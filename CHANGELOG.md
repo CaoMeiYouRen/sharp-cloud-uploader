@@ -1,5 +1,12 @@
 # sharp-cloud-uploader
 
+## [1.1.2](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.1.1...v1.1.2) (2025-01-10)
+
+
+### 🐛 Bug 修复
+
+* **sharp:** 修复SVG格式的支持，直接返回原图 ([1db3474](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/commit/1db3474))
+
 ## [1.1.1](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.1.0...v1.1.1) (2024-12-17)
 
 
