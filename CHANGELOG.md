@@ -1,5 +1,12 @@
 # sharp-cloud-uploader
 
+## [1.1.3](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.1.2...v1.1.3) (2025-07-15)
+
+
+### 🐛 Bug 修复
+
+* **s3:** 修正s3客户端端点配置问题 ([9181ed0](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/commit/9181ed0))
+
 ## [1.1.2](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.1.1...v1.1.2) (2025-01-10)
 
 
