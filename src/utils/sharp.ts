@@ -2,7 +2,7 @@ import { Buffer } from 'buffer'
 import type { Sharp } from 'sharp'
 import { IS_CLOUDFLARE_WORKERS } from '@/env'
 
-export type Format = 'jpeg' | 'jpg' | 'png' | 'webp' | 'jp2' | 'tiff' | 'avif' | 'heif' | 'jxl' | 'svg'
+export type Format = 'jpeg' | 'jpg' | 'png' | 'webp' | 'jp2' | 'tiff' | 'avif' | 'heif' | 'jxl' | 'svg' | 'gif'
 
 /**
  * 压缩图片
@@ -74,6 +74,11 @@ export async function compressImage(
         case 'jxl':
             compressedImage = image.jxl({
                 quality, // 压缩质量
+            })
+            break
+        case 'gif':
+            compressedImage = image.gif({
+                effort: Math.floor(quality / 10), // CPU 压缩级别
             })
             break
         case 'svg':

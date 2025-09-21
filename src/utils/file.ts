@@ -28,6 +28,10 @@ export function getFileExtension(contentType: string | null): string {
         'image/bmp': 'bmp',
         'image/tiff': 'tiff',
         'image/svg+xml': 'svg',
+        'image/jp2': 'jp2',
+        'image/avif': 'avif',
+        'image/heif': 'heif',
+        'image/jxl': 'jxl',
     }
 
     return mimeTypeMap[contentType]
