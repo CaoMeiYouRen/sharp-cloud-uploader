@@ -1,5 +1,12 @@
 # sharp-cloud-uploader
 
+# [1.2.0](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.1.3...v1.2.0) (2025-09-21)
+
+
+### ✨ 新功能
+
+* **sharp:** 添加对GIF格式的支持，更新文件类型映射 ([49881d7](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/commit/49881d7))
+
 ## [1.1.3](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.1.2...v1.1.3) (2025-07-15)
 
 
