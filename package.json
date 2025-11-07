@@ -96,7 +96,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.926.0",
-    "@hono/node-server": "^1.13.7",
+    "@hono/node-server": "^1.19.6",
     "@vercel/blob": "^2.0.0",
     "await-to-js": "^3.0.0",
     "dayjs": "^1.11.19",
