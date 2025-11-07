@@ -100,7 +100,7 @@
     "@vercel/blob": "^2.0.0",
     "await-to-js": "^3.0.0",
     "dayjs": "^1.11.19",
-    "dotenv": "^16.4.5",
+    "dotenv": "^17.2.3",
     "file-type": "^21.0.0",
     "fs-extra": "^11.3.2",
     "hono": "^4.10.4",
