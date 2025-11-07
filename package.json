@@ -95,7 +95,7 @@
     "url": "https://github.com/CaoMeiYouRen/sharp-cloud-uploader/issues"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.698.0",
+    "@aws-sdk/client-s3": "^3.926.0",
     "@hono/node-server": "^1.13.7",
     "@vercel/blob": "^2.0.0",
     "await-to-js": "^3.0.0",
