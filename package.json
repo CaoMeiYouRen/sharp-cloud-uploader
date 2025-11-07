@@ -97,7 +97,7 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.698.0",
     "@hono/node-server": "^1.13.7",
-    "@vercel/blob": "^0.26.0",
+    "@vercel/blob": "^2.0.0",
     "await-to-js": "^3.0.0",
     "dayjs": "^1.11.13",
     "dotenv": "^16.4.5",
