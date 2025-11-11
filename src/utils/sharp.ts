@@ -42,11 +42,13 @@ export async function compressImage(
                 palette: true, // 使用调色板
                 compressionLevel: 9, // 最大压缩级别
                 dither: 1.0, // 减少误差扩散
+                effort: 10, // CPU 压缩级别，高 effort 则压缩更好但更耗时
             })
             break
         case 'webp':
             compressedImage = image.webp({
                 quality, // 压缩质量
+                effort: 6, // CPU 压缩级别
             })
             break
         case 'jp2':
@@ -64,16 +66,19 @@ export async function compressImage(
         case 'avif':
             compressedImage = image.avif({
                 quality, // 压缩质量
+                effort: 9, // CPU 压缩级别
             })
             break
         case 'heif':
             compressedImage = image.heif({
                 quality, // 压缩质量
+                effort: 9, // CPU 压缩级别
             })
             break
         case 'jxl':
             compressedImage = image.jxl({
                 quality, // 压缩质量
+                effort: 9, // CPU 压缩级别
             })
             break
         case 'gif':
