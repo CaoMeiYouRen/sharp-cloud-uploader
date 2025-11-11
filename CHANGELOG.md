@@ -1,5 +1,13 @@
 # sharp-cloud-uploader
 
+# [1.3.0](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.2.0...v1.3.0) (2025-11-11)
+
+
+### ✨ 新功能
+
+* **compressImage:** 为图像压缩添加 CPU 压缩级别参数 ([736d8d1](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/commit/736d8d1))
+* **image:** 添加图片压缩质量配置，默认值为 90 ([6847ffd](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/commit/6847ffd))
+
 # [1.2.0](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.1.3...v1.2.0) (2025-09-21)
 
 
