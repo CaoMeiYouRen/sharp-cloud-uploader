@@ -19,18 +19,15 @@
   </a>
 </p>
 
-
 > 一个使用 sharp 进行图片压缩，并上传文件到 R2、S3 或 Vercel Blob 的云函数。支持 Vercel Functions/Cloudflare Workers/Docker 等方式部署。
 
 ## 🏠 主页
 
 [https://github.com/CaoMeiYouRen/sharp-cloud-uploader#readme](https://github.com/CaoMeiYouRen/sharp-cloud-uploader#readme)
 
-
 ## 📦 依赖要求
 
-
-- node >=18
+-   node >=18
 
 ## 🚀 部署
 
@@ -38,7 +35,7 @@
 
 > 如果遇到了接口长时间无响应/超时的问题，请在 Vercel 控制台中将环境变量`NODEJS_HELPERS`设置为 `0` 后，重新部署，再进行测试。
 
- 点击以下按钮一键部署到 Vercel。
+点击以下按钮一键部署到 Vercel。
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FCaoMeiYouRen%2Fsharp-cloud-uploader.git)
 
@@ -58,13 +55,13 @@
 
 支持两种注册表：
 
-- Docker Hub: [`caomeiyouren/sharp-cloud-uploader`](https://hub.docker.com/r/caomeiyouren/sharp-cloud-uploader)
-- GitHub: [`ghcr.io/caomeiyouren/sharp-cloud-uploader`](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/pkgs/container/sharp-cloud-uploader)
+-   Docker Hub: [`caomeiyouren/sharp-cloud-uploader`](https://hub.docker.com/r/caomeiyouren/sharp-cloud-uploader)
+-   GitHub: [`ghcr.io/caomeiyouren/sharp-cloud-uploader`](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/pkgs/container/sharp-cloud-uploader)
 
 支持以下架构：
 
-- `linux/amd64`
-- `linux/arm64`
+-   `linux/amd64`
+-   `linux/arm64`
 
 有以下几种 tags：
 
@@ -125,7 +122,7 @@ pnpm start
 
 如果在本地部署，基础路径为 `http://localhost:3000`
 
-在服务器或云函数部署则为  `http(s)://{Server IP}`。
+在服务器或云函数部署则为 `http(s)://{Server IP}`。
 
 例如：
 
@@ -141,7 +138,7 @@ pnpm start
 
 请求参数:
 
-- `url`: 图片的 URL  地址 (必填)
+-   `url`: 图片的 URL 地址 (必填)
 
 请求示例:
 
@@ -178,7 +175,7 @@ pnpm start
 
 请求参数:
 
-- 图片数据: 二进制数据 (必填)
+-   图片数据: 二进制数据 (必填)
 
 请求示例:
 
@@ -197,6 +194,7 @@ curl -X POST -H "Content-Type: image/jpeg" --data-binary @image.jpg http://local
 ```
 
 错误响应示例:
+
 ```json
 {
     "status": 400,
@@ -210,13 +208,13 @@ curl -X POST -H "Content-Type: image/jpeg" --data-binary @image.jpg http://local
 
 ```ts
 const uploadFromUrl = async () => {
-    const url = 'https://example.com/image.jpg';
-    const response = await fetch('http://localhost:3000/upload-from-url', {
-        method: 'POST',
+    const url = "https://example.com/image.jpg";
+    const response = await fetch("http://localhost:3000/upload-from-url", {
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify({ url })
+        body: JSON.stringify({ url }),
     });
     const data = await response.json();
     console.log(data);
@@ -229,15 +227,15 @@ uploadFromUrl();
 
 ```javascript
 const uploadFromBody = async () => {
-    const imageFile = document.getElementById('image-file').files[0];
+    const imageFile = document.getElementById("image-file").files[0];
     const reader = new FileReader();
     reader.onload = async () => {
-        const response = await fetch('http://localhost:3000/upload-from-body', {
-            method: 'POST',
+        const response = await fetch("http://localhost:3000/upload-from-body", {
+            method: "POST",
             headers: {
-                'Content-Type': imageFile.type
+                "Content-Type": imageFile.type,
             },
-            body: reader.result
+            body: reader.result,
         });
         const data = await response.json();
         console.log(data);
@@ -271,6 +269,9 @@ LOGFILES=false
 # 受 Vercel Functions 的限制，通过请求体上传时最大不超过 4.5 MB（通过 url 上传则不受限制），详见 https://vercel.com/docs/storage/vercel-blob/server-upload
 # 受 Cloudflare Workers 的限制，通过请求体上传时最大不超过 100 MB（通过 url 上传则不受限制），详见 https://developers.cloudflare.com/workers/platform/limits
 # MAX_BODY_SIZE=104857600
+
+# 图片压缩质量(1-100)，默认 90
+# IMAGE_QUALITY=90
 
 # 授权密钥（Bearer 认证）。可选，如果设置，则所有请求都需要携带此密钥
 AUTH_TOKEN=
@@ -332,16 +333,13 @@ npm run lint
 npm run commit
 ```
 
-
 ## 👤 作者
-
 
 **CaoMeiYouRen**
 
-* Website: [https://blog.cmyr.ltd/](https://blog.cmyr.ltd/)
+-   Website: [https://blog.cmyr.ltd/](https://blog.cmyr.ltd/)
 
-* GitHub: [@CaoMeiYouRen](https://github.com/CaoMeiYouRen)
-
+-   GitHub: [@CaoMeiYouRen](https://github.com/CaoMeiYouRen)
 
 ## 🤝 贡献
 
@@ -349,7 +347,7 @@ npm run commit
 
 ## 💰 支持
 
-如果觉得这个项目有用的话请给一颗⭐️，非常感谢
+如果觉得这个项目有用的话请给一颗 ⭐️，非常感谢
 
 <a href="https://afdian.com/@CaoMeiYouRen">
   <img src="https://cdn.jsdelivr.net/gh/CaoMeiYouRen/image-hosting-01@master/images/202306192324870.png" width="312px" height="78px" alt="在爱发电支持我">
@@ -368,5 +366,6 @@ npm run commit
 Copyright © 2024 [CaoMeiYouRen](https://github.com/CaoMeiYouRen).<br />
 This project is [MIT](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/blob/master/LICENSE) licensed.
 
-***
+---
+
 _This README was generated with ❤️ by [cmyr-template-cli](https://github.com/CaoMeiYouRen/cmyr-template-cli)_

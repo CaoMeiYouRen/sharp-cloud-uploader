@@ -25,6 +25,13 @@ const handleUpload = async (c: Context<{ Bindings: Bindings }, string, BlankInpu
     const MAX_BODY_SIZE = parseInt(envValue.MAX_BODY_SIZE) || 100 * 1024 * 1024
     const BUCKET_PREFIX = envValue.BUCKET_PREFIX || ''
     const STORAGE_TYPE = envValue.STORAGE_TYPE || 's3'
+    const quality = (() => {
+        const parsed = Number.parseInt(envValue.IMAGE_QUALITY || '', 10)
+        if (Number.isNaN(parsed)) {
+            return 90
+        }
+        return Math.min(Math.max(parsed, 1), 100)
+    })()
 
     if (!contentType || !contentType.startsWith('image/')) {
         return c.json({ error: 'Invalid image format' }, 400)
@@ -40,7 +47,7 @@ const handleUpload = async (c: Context<{ Bindings: Bindings }, string, BlankInpu
     const random = Math.random().toString(36).slice(2, 9) // 随机字符串，避免文件名冲突
     const key = `${BUCKET_PREFIX}${timestamp}-${random}.${extension}` // 文件名
     const storage = StorageFactory.getStorage(STORAGE_TYPE, envValue)
-    const compressedBody = await compressImage(Buffer.from(body), extension as Format, 90) // 压缩图片
+    const compressedBody = await compressImage(Buffer.from(body), extension as Format, quality) // 压缩图片
     const result = await storage.upload(compressedBody, key, contentType)
     return c.json({ ...result, success: true, status: 200 }, 200)
 }

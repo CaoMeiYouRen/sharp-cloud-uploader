@@ -13,6 +13,8 @@ export type Bindings = {
     TIMEOUT: string
     // 最大请求体大小(字节)，默认 100MB
     MAX_BODY_SIZE: string
+    // 图片压缩质量(1-100)
+    IMAGE_QUALITY: string
     // 授权密钥（Bearer 认证）
     AUTH_TOKEN: string
     // 文件名前缀

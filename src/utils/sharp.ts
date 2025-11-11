@@ -16,6 +16,7 @@ export async function compressImage(
     format: Format,
     quality: number = 80,
 ): Promise<Buffer> {
+    const normalizedQuality = Math.min(Math.max(Math.round(quality), 1), 100)
     if (IS_CLOUDFLARE_WORKERS) {
         // 由于 Cloudflare Workers 不支持使用 sharp 库，所以直接返回原图
         return input
@@ -30,7 +31,7 @@ export async function compressImage(
         case 'jpg':
         case 'jpeg':
             compressedImage = image.jpeg({
-                quality, // 压缩质量
+                quality: normalizedQuality, // 压缩质量
                 progressive: true, // 使用渐进式扫描
                 chromaSubsampling: '4:4:4', // 防止色度子采样
                 mozjpeg: true, // 使用 MozJPEG 优化
@@ -38,7 +39,7 @@ export async function compressImage(
             break
         case 'png':
             compressedImage = image.png({
-                quality, // 压缩质量
+                quality: normalizedQuality, // 压缩质量
                 palette: true, // 使用调色板
                 compressionLevel: 9, // 最大压缩级别
                 dither: 1.0, // 减少误差扩散
@@ -47,43 +48,43 @@ export async function compressImage(
             break
         case 'webp':
             compressedImage = image.webp({
-                quality, // 压缩质量
+                quality: normalizedQuality, // 压缩质量
                 effort: 6, // CPU 压缩级别
             })
             break
         case 'jp2':
             compressedImage = image.jp2({
-                quality, // 压缩质量
+                quality: normalizedQuality, // 压缩质量
             })
             break
         case 'tiff':
             compressedImage = image.tiff({
-                quality, // 压缩质量
+                quality: normalizedQuality, // 压缩质量
                 compression: 'lzw', // 使用 LZW 压缩
                 predictor: 'horizontal', // 使用水平预测
             })
             break
         case 'avif':
             compressedImage = image.avif({
-                quality, // 压缩质量
+                quality: normalizedQuality, // 压缩质量
                 effort: 9, // CPU 压缩级别
             })
             break
         case 'heif':
             compressedImage = image.heif({
-                quality, // 压缩质量
+                quality: normalizedQuality, // 压缩质量
                 effort: 9, // CPU 压缩级别
             })
             break
         case 'jxl':
             compressedImage = image.jxl({
-                quality, // 压缩质量
+                quality: normalizedQuality, // 压缩质量
                 effort: 9, // CPU 压缩级别
             })
             break
         case 'gif':
             compressedImage = image.gif({
-                effort: Math.floor(quality / 10), // CPU 压缩级别
+                effort: Math.max(1, Math.floor(normalizedQuality / 10)), // CPU 压缩级别
             })
             break
         case 'svg':

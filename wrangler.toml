@@ -16,6 +16,8 @@ assets = { directory = "public" }
 TIMEOUT = 60000
 # 最大请求体大小(字节)，默认 100MB
 MAX_BODY_SIZE = 104857600
+# 图片压缩质量(1-100)
+IMAGE_QUALITY = 90
 # 日志级别
 # LOG_LEVEL=http
 
