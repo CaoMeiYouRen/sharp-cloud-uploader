@@ -1,3 +1,3 @@
 export default {
-    extends: ['cmyr'],
+    extends: ['@commitlint/config-conventional'],
 }
