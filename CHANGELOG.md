@@ -1,5 +1,12 @@
 # sharp-cloud-uploader
 
+## [1.3.1](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.3.0...v1.3.1) (2025-11-19)
+
+
+### 🐛 Bug 修复
+
+* update pnpm overrides to fix all Dependabot alerts ([b7eeaaf](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/commit/b7eeaaf))
+
 # [1.3.0](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.2.0...v1.3.0) (2025-11-11)
 
 
