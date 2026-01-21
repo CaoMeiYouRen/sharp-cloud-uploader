@@ -105,7 +105,7 @@
     "fs-extra": "^11.3.2",
     "hono": "^4.11.4",
     "isomorphic-unfetch": "^4.0.2",
-    "lodash-es": "^4.17.21",
+    "lodash-es": "^4.17.23",
     "sharp": "^0.34.5",
     "tslib": "^2.8.1",
     "winston": "^3.18.3",
