@@ -101,7 +101,7 @@
     "await-to-js": "^3.0.0",
     "dayjs": "^1.11.19",
     "dotenv": "^17.2.3",
-    "file-type": "^21.0.0",
+    "file-type": "^21.3.0",
     "fs-extra": "^11.3.2",
     "hono": "^4.11.7",
     "isomorphic-unfetch": "^4.0.2",
