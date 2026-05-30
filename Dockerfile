@@ -1,5 +1,7 @@
 FROM caomeiyouren/alpine-nodejs:latest AS nodejs
 
+RUN npm install -g pnpm@11
+
 # RUN npm config set registry https://registry.npmmirror.com && \
 #     pnpm config set registry https://registry.npmmirror.com &&
 
@@ -10,7 +12,7 @@ FROM nodejs AS builder
 
 WORKDIR /app
 
-COPY package.json .npmrc pnpm-lock.yaml /app/
+COPY package.json .npmrc pnpm-lock.yaml pnpm-workspace.yaml /app/
 
 RUN pnpm i --frozen-lockfile
 
@@ -36,7 +38,7 @@ RUN export PROJECT_ROOT=/app/ && \
 # 阶段三：生产阶段
 FROM runtime
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
 WORKDIR /app
 
