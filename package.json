@@ -5,6 +5,7 @@
   "author": "CaoMeiYouRen",
   "private": true,
   "license": "MIT",
+  "packageManager": "pnpm@11.2.2",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
