@@ -1,5 +1,12 @@
 # sharp-cloud-uploader
 
+## [1.3.3](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.3.2...v1.3.3) (2026-06-21)
+
+
+### 🐛 Bug 修复
+
+* **deps:** add overrides for high-severity transitive deps ([9daa377](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/commit/9daa377)), closes [hi#severity](https://github.com/hi/issues/severity)
+
 ## [1.3.2](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.3.1...v1.3.2) (2026-06-10)
 
 
