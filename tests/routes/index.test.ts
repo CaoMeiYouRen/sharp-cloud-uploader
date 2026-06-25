@@ -1,5 +1,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 
+// Clear AUTH_TOKEN before anything loads dotenv
+process.env.AUTH_TOKEN = ''
+
 // Mock all external dependencies
 vi.mock('@/libs/storage-factory', () => ({
     StorageFactory: {

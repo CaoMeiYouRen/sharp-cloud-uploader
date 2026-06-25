@@ -1,3 +1,4 @@
+import path from 'path'
 import { defineConfig, Options } from 'tsup'
 
 const tsupOptions: Options = {
@@ -35,11 +36,27 @@ const tsupOptions: Options = {
     dts: false,
     minify: false, // 缩小输出
     shims: true, // 注入 cjs 和 esm 填充代码，解决 import.meta.url 和 __dirname 的兼容问题
+    noExternal: ['@modelcontextprotocol/sdk'],
+    esbuildPlugins: [
+        {
+            name: 'resolve-mcp-sdk',
+            setup(build) {
+                build.onResolve(
+                    { filter: /^@modelcontextprotocol\/sdk\/(.+)/ },
+                    (args) => {
+                        const subpath = args.path.match(/@modelcontextprotocol\/sdk\/(.+)/)?.[1] || ''
+                        return {
+                            path: path.resolve('node_modules/@modelcontextprotocol/sdk/dist/esm', `${subpath}.js`),
+                        }
+                    },
+                )
+            },
+        },
+    ],
     esbuildOptions(options) { // 设置编码格式
         options.charset = 'utf8'
     },
     // external: [], // 排除的依赖项
-    // noExternal: [/(.*)/], // 将依赖打包到一个文件中
     // bundle: true,
 }
 
@@ -50,6 +67,8 @@ const cloudflareOptions: Options = {
     replaceNodeEnv: false,
     minify: false,
     treeshake: true,
+    // noExternal: undefined,
+    // esbuildPlugins: undefined,
     env: {
         RUNTIME_KEY: 'cloudflare-workers',
         NODE_ENV: 'production',
