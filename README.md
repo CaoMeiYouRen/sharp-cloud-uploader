@@ -4,6 +4,9 @@
   <a href="https://hub.docker.com/r/caomeiyouren/sharp-cloud-uploader" target="_blank">
     <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/caomeiyouren/sharp-cloud-uploader">
   </a>
+  <a href="https://app.codecov.io/gh/CaoMeiYouRen/sharp-cloud-uploader" target="_blank">
+    <img alt="Codecov" src="https://img.shields.io/codecov/c/github/CaoMeiYouRen/sharp-cloud-uploader">
+  </a>
   <a href="https://github.com/CaoMeiYouRen/sharp-cloud-uploader/actions?query=workflow%3ARelease" target="_blank">
     <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/CaoMeiYouRen/sharp-cloud-uploader/release.yml?branch=master">
   </a>
