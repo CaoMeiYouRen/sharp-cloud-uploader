@@ -249,6 +249,78 @@ const uploadFromBody = async () => {
 uploadFromBody();
 ```
 
+### 3. MCP Server（AI Agent 调用）
+
+本项目支持 [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)，可将图片上传能力暴露为标准化工具，供 Claude Desktop、Cursor、VS Code Copilot 等 AI 应用直接调用。
+
+#### 3.1 本地模式（stdio）
+
+适用于本地 AI 工具集成，通过标准输入输出进行通信。
+
+**构建本地入口：**
+
+```bash
+pnpm run build    # 会同时生成 dist/mcp-local.mjs
+```
+
+**在 Claude Desktop 中配置：**
+
+编辑 Claude Desktop 的 `claude_desktop_config.json`：
+
+```json
+{
+    "mcpServers": {
+        "sharp-cloud-uploader": {
+            "command": "node",
+            "args": ["/path/to/sharp-cloud-uploader/dist/mcp-local.mjs"],
+            "env": {
+                "STORAGE_TYPE": "s3",
+                "S3_REGION": "auto",
+                "S3_BUCKET_NAME": "images",
+                "S3_ACCESS_KEY_ID": "<your-key>",
+                "S3_SECRET_ACCESS_KEY": "<your-secret>",
+                "S3_ENDPOINT": "https://xxx.r2.cloudflarestorage.com",
+                "S3_BASE_URL": "https://oss.example.com",
+                "BUCKET_PREFIX": "uploads/"
+            }
+        }
+    }
+}
+```
+
+**快速启动（开发调试）：**
+
+```bash
+pnpm run mcp:local:dev    # 开发模式，使用 tsx 直接运行源码
+pnpm run mcp:local        # 生产模式，使用编译产物
+```
+
+#### 3.2 远程模式（HTTP）
+
+远程模式已集成到服务中，随 Vercel / Docker 部署自动启用，挂载在 `/mcp` 端点。
+
+无需额外配置，AI 应用可通过 MCP Streamable HTTP 协议直接访问：
+
+```
+POST https://your-app.vercel.app/mcp
+```
+
+> 若设置了 `AUTH_TOKEN` 环境变量，MCP 客户端需携带 `Authorization: Bearer <token>` 请求头。
+
+#### 3.3 可用工具
+
+| 工具名 | 描述 |
+|--------|------|
+| `upload_image_from_url` | 从远程 URL 下载图片，使用 sharp 压缩后上传到云存储 |
+| `upload_image_from_base64` | 接收 Base64 编码的图片数据，压缩后上传到云存储 |
+| `get_runtime_info` | 查询服务运行状态和配置（非敏感信息） |
+
+**示例对话（适用于 Claude Desktop）：**
+
+> 用户：帮我把 https://example.com/photo.jpg 这张图片上传到我的图床
+>
+> Claude：调用 `upload_image_from_url` 工具，传入 `{ "url": "https://example.com/photo.jpg", "quality": 90 }`，返回压缩后的图片链接 `https://oss.example.com/uploads/20260101120000000-abc1234.jpg`
+
 ### 环境变量配置
 
 请参考 [.env](./src/.env) 文件中的注释。
@@ -322,6 +394,14 @@ npm run dev
 
 ```sh
 npm run build
+```
+
+## 🧪 测试
+
+```sh
+npm run test           # 运行所有测试
+npm run test:watch     # watch 模式
+npm run test:coverage  # 覆盖率报告
 ```
 
 ## 🔍 Lint
