@@ -10,6 +10,7 @@ import { loggerMiddleware } from './middlewares/logger'
 import { errorhandler, notFoundHandler } from './middlewares/error'
 import { Bindings } from './types'
 import routes from './routes'
+import { mcpHandler } from './mcp/remote'
 
 const app = new Hono<{ Bindings: Bindings }>()
 app.use(loggerMiddleware)
@@ -38,6 +39,8 @@ app.all('/runtime', (c) => c.json({
 }))
 
 app.route('/', routes)
+
+app.all('/mcp', mcpHandler)
 
 if (__DEV__) {
     showRoutes(app, {

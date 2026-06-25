@@ -36,7 +36,10 @@
     "dev:vercel": "vercel dev",
     "deploy:vercel": "vercel",
     "dev:wrangler": "wrangler dev --env dev",
-    "deploy:wrangler": "wrangler deploy"
+    "deploy:wrangler": "wrangler deploy",
+    "mcp:local": "node dist/mcp-local.mjs",
+    "mcp:local:dev": "cross-env NODE_ENV=development tsx src/mcp/local.ts",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20260530.1",
@@ -98,6 +101,7 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1057.0",
     "@hono/node-server": "^2.0.4",
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "@smithy/core": "^3.25.1",
     "@vercel/blob": "^2.0.1",
     "await-to-js": "^3.0.0",
@@ -111,7 +115,8 @@
     "sharp": "^0.34.5",
     "tslib": "^2.8.1",
     "winston": "^3.19.0",
-    "winston-daily-rotate-file": "^5.0.0"
+    "winston-daily-rotate-file": "^5.0.0",
+    "zod": "^4.4.3"
   },
   "type": "module"
 }

@@ -1,6 +1,5 @@
 import { S3Client, PutObjectCommand, PutObjectCommandInput } from '@aws-sdk/client-s3'
 import { Storage } from './storage'
-import { getFileType } from '@/utils/file'
 import { Bindings } from '@/types'
 
 /**

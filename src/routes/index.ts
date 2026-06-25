@@ -3,7 +3,6 @@ import { Context, Hono } from 'hono'
 import { env } from 'hono/adapter'
 import dayjs from 'dayjs'
 import { BlankInput } from 'hono/types'
-import { bearerAuth } from 'hono/bearer-auth'
 import { Bindings } from '../types'
 import { getFileType, getFileExtension } from '@/utils/file'
 import { getHeaders } from '@/utils/referers'
@@ -12,10 +11,14 @@ import { compressImage, Format } from '@/utils/sharp'
 
 const app = new Hono<{ Bindings: Bindings }>()
 
-app.on('POST', ['/upload-from-url', '/upload-from-body'], (c, next) => {
+app.on('POST', ['/upload-from-url', '/upload-from-body'], async (c, next) => {
     const authToken = env(c).AUTH_TOKEN
-    if (authToken) { // 如果设置了授权密钥，则进行 Bearer 认证，否则跳过
-        return bearerAuth({ token: authToken })(c, next)
+    if (authToken) {
+        const authHeader = c.req.header('Authorization')
+        const token = authHeader?.startsWith('Bearer ') ? authHeader.slice(7) : null
+        if (token !== authToken) {
+            return c.json({ error: 'Unauthorized' }, 401)
+        }
     }
     return next()
 })
@@ -37,7 +40,7 @@ const handleUpload = async (c: Context<{ Bindings: Bindings }, string, BlankInpu
         return c.json({ error: 'Invalid image format' }, 400)
     }
 
-    const contentLength = parseInt(c.req.header('Content-Length')) || body.byteLength
+    const contentLength = parseInt(c.req.header('Content-Length') || '0') || body.byteLength
     if (contentLength && contentLength > MAX_BODY_SIZE) {
         return c.json({ error: 'Image size exceeds the limit' }, 400)
     }

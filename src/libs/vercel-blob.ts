@@ -1,6 +1,5 @@
 import { put } from '@vercel/blob'
 import { Storage } from './storage'
-import { getFileType } from '@/utils/file'
 import { Bindings } from '@/types'
 
 /**

@@ -17,7 +17,7 @@ const referers = [
     },
 ]
 // 处理 Referer
-export function getHeaders(url: string) {
+export function getHeaders(url: string): Record<string, string> {
     for (const referer of referers) {
         const urlObj = new URL(url)
         if (urlObj.host.endsWith(referer.host)) {
@@ -26,5 +26,5 @@ export function getHeaders(url: string) {
             }
         }
     }
-    return {}
+    return {} as Record<string, string>
 }

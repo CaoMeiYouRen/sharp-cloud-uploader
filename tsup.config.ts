@@ -35,7 +35,7 @@ const tsupOptions: Options = {
     dts: false,
     minify: false, // 缩小输出
     shims: true, // 注入 cjs 和 esm 填充代码，解决 import.meta.url 和 __dirname 的兼容问题
-    esbuildOptions(options, context) { // 设置编码格式
+    esbuildOptions(options) { // 设置编码格式
         options.charset = 'utf8'
     },
     // external: [], // 排除的依赖项
@@ -56,4 +56,12 @@ const cloudflareOptions: Options = {
     },
 }
 
-export default defineConfig([tsupOptions, cloudflareOptions])
+const mcpLocalOptions: Options = {
+    ...tsupOptions,
+    entry: {
+        'mcp-local': 'src/mcp/local.ts',
+    },
+    format: ['esm'],
+}
+
+export default defineConfig([tsupOptions, cloudflareOptions, mcpLocalOptions])
