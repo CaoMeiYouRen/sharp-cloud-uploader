@@ -1,5 +1,12 @@
 # sharp-cloud-uploader
 
+# [1.4.0](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.3.3...v1.4.0) (2026-06-25)
+
+
+### ✨ 新功能
+
+* **mcp:** 添加 MCP 服务器支持 ([b5ccbe3](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/commit/b5ccbe3))
+
 ## [1.3.3](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.3.2...v1.3.3) (2026-06-21)
 
 
