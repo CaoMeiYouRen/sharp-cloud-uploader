@@ -129,14 +129,19 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
       - name: Create ACR multi-arch manifest list
+        env:
+          DOCKER_METADATA_OUTPUT_TAGS: ${{ steps.metadata-acr.outputs.tags }}
         run: |
           set -e
-          for tag in ${{ steps.metadata-acr.outputs.tags }}; do
+          # metadata-action 的 tags 输出是换行分隔的，直接插值到 for 循环会破坏 bash 语法
+          # 改用 metadata-action 自动导出的 DOCKER_METADATA_OUTPUT_TAGS 环境变量逐行读取
+          while IFS= read -r tag; do
+            [ -z "$tag" ] && continue
             docker buildx imagetools create \
               -t "$tag" \
-              registry.cn-hangzhou.aliyuncs.com/${{ env.ACR_REPO }}:platform-amd64 \
-              registry.cn-hangzhou.aliyuncs.com/${{ env.ACR_REPO }}:platform-arm64
-          done
+              "registry.cn-hangzhou.aliyuncs.com/${ACR_REPO}:platform-amd64" \
+              "registry.cn-hangzhou.aliyuncs.com/${ACR_REPO}:platform-arm64"
+          done <<< "$DOCKER_METADATA_OUTPUT_TAGS"
       - name: Docker Hub README & description sync
         uses: meeDamian/sync-readme@v1.0.6
         with:
