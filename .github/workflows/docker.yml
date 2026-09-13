@@ -61,6 +61,10 @@ jobs:
           registry: registry.cn-hangzhou.aliyuncs.com
           username: ${{ secrets.ALIYUN_USERNAME }}
           password: ${{ secrets.ALIYUN_PASSWORD }}
+      # docker/metadata-action 内部对 image name 做了 toLowerCase，
+      # 绕过 metadata 直接拼 tag 时需手动转小写，否则 buildx 拒绝
+      - name: Compute lowercase namespace for ACR
+        run: echo "ACR_REPO=$(echo "${GITHUB_REPOSITORY}" | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_ENV"
       - name: Extract Docker metadata for docker.io and ghcr.io
         id: metadata-main
         uses: docker/metadata-action@v5
@@ -105,7 +109,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: registry.cn-hangzhou.aliyuncs.com/${{ github.repository }}:platform-amd64
+          tags: registry.cn-hangzhou.aliyuncs.com/${{ env.ACR_REPO }}:platform-amd64
           platforms: linux/amd64
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -115,7 +119,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: registry.cn-hangzhou.aliyuncs.com/${{ github.repository }}:platform-arm64
+          tags: registry.cn-hangzhou.aliyuncs.com/${{ env.ACR_REPO }}:platform-arm64
           platforms: linux/arm64
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -125,8 +129,8 @@ jobs:
           for tag in ${{ steps.metadata-acr.outputs.tags }}; do
             docker buildx imagetools create \
               -t "$tag" \
-              registry.cn-hangzhou.aliyuncs.com/${{ github.repository }}:platform-amd64 \
-              registry.cn-hangzhou.aliyuncs.com/${{ github.repository }}:platform-arm64
+              registry.cn-hangzhou.aliyuncs.com/${{ env.ACR_REPO }}:platform-amd64 \
+              registry.cn-hangzhou.aliyuncs.com/${{ env.ACR_REPO }}:platform-arm64
           done
       - name: Docker Hub README & description sync
         uses: meeDamian/sync-readme@v1.0.6
