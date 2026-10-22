@@ -1,5 +1,17 @@
 # sharp-cloud-uploader
 
+# [1.5.0](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.4.0...v1.5.0) (2026-10-22)
+
+
+### ✨ 新功能
+
+* 提升 Node.js 最低版本要求到 22.23.4 / 24.22.1 ([bcac013](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/commit/bcac013))
+
+
+### 🐛 Bug 修复
+
+* **security:** 拒绝 Brotli 编码响应以缓解 CVE-2026-111497 ([16e75a5](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/commit/16e75a5))
+
 # [1.4.0](https://github.com/CaoMeiYouRen/sharp-cloud-uploader/compare/v1.3.3...v1.4.0) (2026-06-25)
 
 
