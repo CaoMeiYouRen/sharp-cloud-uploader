@@ -3,6 +3,7 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp'
 import * as z from 'zod/v4'
 import dayjs from 'dayjs'
 import { Bindings } from '../types'
+import { fetchWithoutBrotli } from '@/utils/fetch'
 import { getFileType, getFileExtension } from '@/utils/file'
 import { getHeaders } from '@/utils/referers'
 import { StorageFactory } from '@/libs/storage-factory'
@@ -51,7 +52,8 @@ export function createMcpServer(env: Bindings): McpServer {
 
             try {
                 const headers = getHeaders(url)
-                const response = await fetch(url, { headers })
+                // CVE-2026-111497：拒绝 br 响应，避免 Node 的 Brotli 解码器处理不可信数据
+                const response = await fetchWithoutBrotli(url, { headers })
                 if (!response.ok) {
                     return {
                         content: [{ type: 'text' as const, text: `下载失败: HTTP ${response.status} ${response.statusText}` }],

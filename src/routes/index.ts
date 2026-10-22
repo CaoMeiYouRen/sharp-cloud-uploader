@@ -4,6 +4,7 @@ import { env } from 'hono/adapter'
 import dayjs from 'dayjs'
 import { BlankInput } from 'hono/types'
 import { Bindings } from '../types'
+import { fetchWithoutBrotli, UnsafeContentEncodingError } from '@/utils/fetch'
 import { getFileType, getFileExtension } from '@/utils/file'
 import { getHeaders } from '@/utils/referers'
 import { StorageFactory } from '@/libs/storage-factory'
@@ -67,7 +68,16 @@ app.post('/upload-from-url', async (c) => {
         return c.json({ url, status: 200 }, 200)
     }
     const headers = getHeaders(url)
-    const response = await fetch(url, { headers })
+    let response: Response
+    try {
+        // CVE-2026-111497：拒绝 br 响应，避免 Node 的 Brotli 解码器处理不可信数据
+        response = await fetchWithoutBrotli(url, { headers })
+    } catch (error) {
+        if (error instanceof UnsafeContentEncodingError) {
+            return c.json({ error: 'Brotli encoded responses are not supported' }, 400)
+        }
+        throw error
+    }
     const body = await response.arrayBuffer()
     const contentType = response.headers.get('Content-Type') || await getFileType(Buffer.from(body)) || 'application/octet-stream' // 如果没有Content-Type头，尝试从body中检测
     return handleUpload(c, body, contentType)
