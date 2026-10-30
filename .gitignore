@@ -41,3 +41,5 @@ temp
 .dev.vars
 
 coverage
+# dependfix
+dependfix-reports/
