@@ -108,7 +108,7 @@
     "@hono/node-server": "^2.1.5",
     "@modelcontextprotocol/sdk": "^1.32.0",
     "@smithy/core": "^3.31.0",
-    "@vercel/blob": "^2.6.1",
+    "@vercel/blob": "^2.8.2",
     "await-to-js": "^3.0.0",
     "dayjs": "^1.11.23",
     "dotenv": "^17.2.3",
