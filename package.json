@@ -110,7 +110,7 @@
     "@smithy/core": "^3.31.0",
     "@vercel/blob": "^2.6.1",
     "await-to-js": "^3.0.0",
-    "dayjs": "^1.11.19",
+    "dayjs": "^1.11.23",
     "dotenv": "^17.2.3",
     "file-type": "^22.0.1",
     "fs-extra": "^11.4.0",
