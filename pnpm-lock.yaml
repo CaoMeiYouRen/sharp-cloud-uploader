@@ -158,8 +158,8 @@ importers:
         specifier: 25.0.8
         version: 25.0.8(typescript@6.0.3)
       semantic-release-cmyr-config:
-        specifier: ^1.0.0
-        version: 1.0.2(semantic-release@25.0.8(typescript@6.0.3))
+        specifier: ^1.1.0
+        version: 1.1.0(semantic-release@25.0.8(typescript@6.0.3))
       tsup:
         specifier: ^8.5.0
         version: 8.5.1(jiti@2.6.1)(postcss@8.5.32)(tsx@4.23.1)(typescript@6.0.3)(yaml@2.9.0)
@@ -1642,6 +1642,12 @@ packages:
     peerDependencies:
       semantic-release: '>=18.0.0'
 
+  '@semantic-release/changelog@7.0.0':
+    resolution: {integrity: sha512-TNPyag5db24o7jWjre7UwKB4EcL8oJxbRhnDQ7hmZRAYqzreAc6PgdxQuU3pppp5xQinYtiumL0iG8SSKvnlzg==}
+    engines: {node: ^22.22.2 || >=24.15}
+    peerDependencies:
+      semantic-release: '>=20.1.0'
+
   '@semantic-release/commit-analyzer@13.0.1':
     resolution: {integrity: sha512-wdnBPHKkr9HhNhXOhZD5a2LNl91+hs8CC2vsAVYxtZH3y0dV3wKn+uZSN61rdJQZ8EGxzWB3inWocBHV9+u/CQ==}
     engines: {node: '>=20.8.1'}
@@ -1655,12 +1661,6 @@ packages:
   '@semantic-release/error@4.0.0':
     resolution: {integrity: sha512-mgdxrHTLOjOddRVYIYDo0fR3/v61GNN1YGkfbrjuIKg/uMgCd+Qzo3UAXJ+woLQQpos4pl5Esuw5A7AoNlzjUQ==}
     engines: {node: '>=18'}
-
-  '@semantic-release/git@10.0.1':
-    resolution: {integrity: sha512-eWrx5KguUcU2wUPaO6sfvZI0wPafUKAMNC18aXY4EnNcrZL86dEmpNVnC9uMpGZkmZJ9EfCVJBQx4pV4EMGT1w==}
-    engines: {node: '>=14.17'}
-    peerDependencies:
-      semantic-release: '>=18.0.0'
 
   '@semantic-release/git@11.0.1':
     resolution: {integrity: sha512-Zr8BUYCTZMc8V6wDKN2dpR7nJgewd9I6THL3ydLTnp3OEdTo1/4RBLNYaeRucYMsjMv+BXoCNfXA0NADj1kwhw==}
@@ -1716,6 +1716,7 @@ packages:
   '@smithy/core@3.31.0':
     resolution: {integrity: sha512-sylYk2l9d7CmRv8ts8p0SDQUr3VO+HMeS1nrjL6+UtbO8ktJHTOeQ1McX+aAyvGGccp5aZX9eNtdcXrSwzoZaw==}
     engines: {node: '>=18.0.0'}
+    deprecated: Deprecated due to a bug in custom logger data redaction. See https://github.com/aws/aws-sdk-js-v3/issues/8393.
 
   '@smithy/credential-provider-imds@4.4.1':
     resolution: {integrity: sha512-TSAF5NHgxEsllbErYWbK8aLnl5L601NGc5VYJlSPsKnf3YlkhdoBN+geGcaU00oiw2OK3QO5LA3QNXiiWhCidQ==}
@@ -2144,6 +2145,10 @@ packages:
 
   aggregate-error@5.0.0:
     resolution: {integrity: sha512-gOsf2YwSlleG6IjRYG2A7k0HmBMEo6qVNk9Bp/EaLgAJT5ngH6PXbqa4ItvnEwCm/velL5jAnQgsHsWnjhGmvw==}
+    engines: {node: '>=18'}
+
+  aggregate-error@5.1.0:
+    resolution: {integrity: sha512-1m4/ydbOGBbHTtBYa4/ISQcqfPdZAxQLzj71wM71T8lP4ktez8lcsVolvscrujQW4CJr/LJSzoZ6mcfnqzYQ3A==}
     engines: {node: '>=18'}
 
   ajv-formats@3.0.1:
@@ -4679,10 +4684,6 @@ packages:
     resolution: {integrity: sha512-I4Prw6ivkd6p8PiYR1tXASOAOBzIJwu0TB7fqaX0c/8c3QAehNYmX57EijyGGGBt3c/BIowGwV03RVBtXvHEVg==}
     engines: {node: '>=18'}
 
-  p-reduce@2.1.0:
-    resolution: {integrity: sha512-2USApvnsutq8uoxZBGbbWM0JIYLiEMJ9RlaN7fAzVNb9OZN0SHjjTTfIcb667XynS5Y1VhwDJVDa72TnPzAYWw==}
-    engines: {node: '>=8'}
-
   p-reduce@3.0.0:
     resolution: {integrity: sha512-xsrIUgI0Kn6iyDYm9StOpOeK29XM1aboGji26+QEortiFST1hGZaUQOLhtEbqHErPpGW/aSz6allwK2qcptp0Q==}
     engines: {node: '>=12'}
@@ -5150,9 +5151,9 @@ packages:
     resolution: {integrity: sha512-JPdADikobt6zFuuCRhl6whNrCJlLPxpUmT/hNxLij70mkpeejHKDN+HeVlrdHI8snDTzRIiF3Ye8KyMIyVWA+A==}
     hasBin: true
 
-  semantic-release-cmyr-config@1.0.2:
-    resolution: {integrity: sha512-xMa4wMK88HuTc9ODdEsW38iDRmka4iGjCWSWCHdXBU3st+8h63xkmPhWCEBR8J8Kkstd/j4bLIV00Lm1T90bJw==}
-    engines: {node: '>=18'}
+  semantic-release-cmyr-config@1.1.0:
+    resolution: {integrity: sha512-8mfdHnYgXxspqjURYfLidg2SjerAI/bfZLcxW7tsSTrvgMuKLeVVoeqc7QTzorjKnkHSakxNnzm/3xjyVWqXug==}
+    engines: {node: ^22.22.2 || >=24.15}
     peerDependencies:
       semantic-release: '>=24'
 
@@ -7446,6 +7447,13 @@ snapshots:
       lodash: 4.18.1
       semantic-release: 25.0.8(typescript@6.0.3)
 
+  '@semantic-release/changelog@7.0.0(semantic-release@25.0.8(typescript@6.0.3))':
+    dependencies:
+      '@semantic-release/error': 4.0.0
+      aggregate-error: 5.1.0
+      lodash-es: 4.18.1
+      semantic-release: 25.0.8(typescript@6.0.3)
+
   '@semantic-release/commit-analyzer@13.0.1(semantic-release@25.0.8(typescript@6.0.3))':
     dependencies:
       conventional-changelog-angular: 8.3.1
@@ -7463,20 +7471,6 @@ snapshots:
   '@semantic-release/error@3.0.0': {}
 
   '@semantic-release/error@4.0.0': {}
-
-  '@semantic-release/git@10.0.1(semantic-release@25.0.8(typescript@6.0.3))':
-    dependencies:
-      '@semantic-release/error': 3.0.0
-      aggregate-error: 3.1.0
-      debug: 4.4.3
-      dir-glob: 3.0.1
-      execa: 5.1.1
-      lodash: 4.18.1
-      micromatch: 4.0.8
-      p-reduce: 2.1.0
-      semantic-release: 25.0.8(typescript@6.0.3)
-    transitivePeerDependencies:
-      - supports-color
 
   '@semantic-release/git@11.0.1(semantic-release@25.0.8(typescript@6.0.3))':
     dependencies:
@@ -8287,6 +8281,11 @@ snapshots:
       indent-string: 4.0.0
 
   aggregate-error@5.0.0:
+    dependencies:
+      clean-stack: 5.3.0
+      indent-string: 5.0.0
+
+  aggregate-error@5.1.0:
     dependencies:
       clean-stack: 5.3.0
       indent-string: 5.0.0
@@ -11119,8 +11118,6 @@ snapshots:
 
   p-map@7.0.6: {}
 
-  p-reduce@2.1.0: {}
-
   p-reduce@3.0.0: {}
 
   p-timeout@6.1.4: {}
@@ -11712,12 +11709,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  semantic-release-cmyr-config@1.0.2(semantic-release@25.0.8(typescript@6.0.3)):
+  semantic-release-cmyr-config@1.1.0(semantic-release@25.0.8(typescript@6.0.3)):
     dependencies:
-      '@semantic-release/changelog': 6.0.3(semantic-release@25.0.8(typescript@6.0.3))
-      '@semantic-release/git': 10.0.1(semantic-release@25.0.8(typescript@6.0.3))
+      '@semantic-release/changelog': 7.0.0(semantic-release@25.0.8(typescript@6.0.3))
+      '@semantic-release/git': 11.0.1(semantic-release@25.0.8(typescript@6.0.3))
       conventional-changelog-cmyr-config: 3.0.0
-      conventional-changelog-writer: 8.4.0
       semantic-release: 25.0.8(typescript@6.0.3)
     transitivePeerDependencies:
       - supports-color
