@@ -119,8 +119,8 @@ importers:
         specifier: ^25.9.1
         version: 25.9.4
       '@vercel/nft':
-        specifier: ^1.3.0
-        version: 1.10.2(rollup@4.62.2)
+        specifier: ^1.11.0
+        version: 1.11.0(rollup@4.62.2)
       '@vitest/coverage-v8':
         specifier: ^4.1.9
         version: 4.1.9(vitest@4.1.11)
@@ -961,11 +961,6 @@ packages:
   '@lint-md/parser@0.0.14':
     resolution: {integrity: sha512-kFFq6TowN2MBe+EFctnn6VluPWHV/9i/mHGQG/d5qGcR7EnA7JSURaxw9kQDHG11bwUK+pHOoXjSOp/6VzM/1w==}
 
-  '@mapbox/node-pre-gyp@2.0.0':
-    resolution: {integrity: sha512-llMXd39jtP0HpQLVI37Bf1m2ADlEb35GYSh1SDSLsBhR+5iCxiNGlT31yqbNtVHygHAtMy6dWFERpU2JgufhPg==}
-    engines: {node: '>=18'}
-    hasBin: true
-
   '@mapbox/node-pre-gyp@2.0.3':
     resolution: {integrity: sha512-uwPAhccfFJlsfCxMYTwOdVfOz3xqyj8xYL3zJj8f0pb30tLohnnFPhLuqp4/qoEz8sNxe4SESZedcBojRefIzg==}
     engines: {node: '>=18'}
@@ -1483,8 +1478,8 @@ packages:
   '@rolldown/pluginutils@1.0.1':
     resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
 
-  '@rollup/pluginutils@5.4.0':
-    resolution: {integrity: sha512-MfPp06CjRLfXQ3wY0R8vJDYBy/MvVcc9OulEfR0B8Iv9ko+GCNaRZ+EpJYFl27LhKsZK0o420sYCRHCjfCgeUg==}
+  '@rollup/pluginutils@5.5.1':
+    resolution: {integrity: sha512-P9ZvnfouRu4MSC+ilERaw6FmZs8zqKhpHxEs4aGDGWQAMzQGXnhvCSvoNwokfNvdt7t3Y5Y4p6gStQgezeIqug==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^4.59.0
@@ -1716,6 +1711,7 @@ packages:
   '@smithy/core@3.31.0':
     resolution: {integrity: sha512-sylYk2l9d7CmRv8ts8p0SDQUr3VO+HMeS1nrjL6+UtbO8ktJHTOeQ1McX+aAyvGGccp5aZX9eNtdcXrSwzoZaw==}
     engines: {node: '>=18.0.0'}
+    deprecated: Deprecated due to a bug in custom logger data redaction. See https://github.com/aws/aws-sdk-js-v3/issues/8393.
 
   '@smithy/credential-provider-imds@4.4.1':
     resolution: {integrity: sha512-TSAF5NHgxEsllbErYWbK8aLnl5L601NGc5VYJlSPsKnf3YlkhdoBN+geGcaU00oiw2OK3QO5LA3QNXiiWhCidQ==}
@@ -1990,8 +1986,8 @@ packages:
     engines: {node: '>=20'}
     hasBin: true
 
-  '@vercel/nft@1.10.2':
-    resolution: {integrity: sha512-w+WyX5Ulmj4dtTZrxaulqrjaLZHSbnPzx75SJsTNYmotKsqn1JlLnDJa+lz5hn90HJofhl/2MAtw0mCrgM3qYw==}
+  '@vercel/nft@1.11.0':
+    resolution: {integrity: sha512-m1QFg+U+3yPOnP1xSYJ73UIRxLOXdts1JOhiOiyPYqEsALgrXFFINvgUaD6R6iNvaBFAjHllBCbkfx4FuOdpaA==}
     engines: {node: '>=20'}
     hasBin: true
 
@@ -2086,10 +2082,6 @@ packages:
   '@workflow/serde@4.1.0-beta.2':
     resolution: {integrity: sha512-8kkeoQKLDaKXefjV5dbhBj2aErfKp1Mc4pb6tj8144cF+Em5SPbyMbyLCHp+BVrFfFVCBluCtMx+jjvaFVZGww==}
 
-  abbrev@2.0.0:
-    resolution: {integrity: sha512-6/mh1E2u2YgEsCHdY0Yx5oW+61gZU+1vXaoiHHrpKeuRNNgFvS+/jrwHiQhB5apAf5oB7UB7E19ol2R2LKH8hQ==}
-    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
-
   abbrev@3.0.1:
     resolution: {integrity: sha512-AO2ac6pjRB3SJmGJo+v5/aK6Omggp6fsLrs6wN9bd35ulu4cCwaAU9+7ZhXjeqHVkaHThLuzH0nZr0YpCDhygg==}
     engines: {node: ^18.17.0 || >=20.5.0}
@@ -2116,19 +2108,10 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  acorn@8.17.0:
-    resolution: {integrity: sha512-xRQbDb9BnwDafYNn6Vwl839DYVjqXYb1XVGtWAZ1kcDc6iwAL4hg3B1dZlRiuENFeO2H53gFG3in621AdERVAg==}
+  acorn@8.19.0:
+    resolution: {integrity: sha512-oJlA3XiRm7Cyk6qFD2Jn8ak9B7jSy0qy00ADO3+8dpT0LSjFihQYv4C02LFCSYJV3Q37xYwwRy5m+IpIiUzqWw==}
     engines: {node: '>=0.4.0'}
     hasBin: true
-
-  acorn@8.18.0:
-    resolution: {integrity: sha512-lGq+9yr1/GuAWaVYIHRjvvySG5/4VfKIvC8EWxStPdcDh/Ka7FG3twP6v4d5BkravUilhIAsG4Qj83t02LWUPQ==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
-
-  agent-base@7.0.2:
-    resolution: {integrity: sha512-k2/tQ1+8Zf50dEUJWklUP80LcE/+Ph+OJ6cf2Ff2fD/c/TtCe6ofnCoNMz9UnyxOQYlaAALZtEWETzn+1JjfHg==}
-    engines: {node: '>= 14'}
 
   agent-base@7.1.4:
     resolution: {integrity: sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==}
@@ -3491,10 +3474,6 @@ packages:
     resolution: {integrity: sha512-2NxoveTT58mjYT4n3RPTEfCZGLMbidoO8XEieXfpSYxu+PQJ1qpx4ypwH6N+uF9twBPIvRRgvkvW5HUTYWENig==}
     engines: {node: '>= 20'}
 
-  https-proxy-agent@7.0.5:
-    resolution: {integrity: sha512-1e4Wqeblerz+tMKPIq2EMGiiWW1dIjZOksyHWSUm1rmuvw/how9hBHZ38lAGj5ID4Ik6EdkOw7NmWPy6LAwalw==}
-    engines: {node: '>= 14'}
-
   https-proxy-agent@7.0.6:
     resolution: {integrity: sha512-vK9P5/iUfdl95AI+JVyUuIcVtd4ofvtrOr3HNtM2yxC9bnMbEdp3x01OhQNnjb8IJYi38VlTE3mBXwcfvywuSw==}
     engines: {node: '>= 14'}
@@ -4081,6 +4060,10 @@ packages:
     resolution: {integrity: sha512-4pfM1Ff0x50o0tQwb5ucw/RzNyD0/YJME6IVcStalZuMWxdt3sR3huStTtxz4PUmvZfRguvDejasvQ2kifR11g==}
     engines: {node: 20 || >=22}
 
+  lru-cache@11.5.3:
+    resolution: {integrity: sha512-U4N8FgzmWxc8k1VH8Kr6lQg18U7Fjvby6wXHVRX/ZZ7IwWbRMgrRbP0Wrb5q5NVinryp4SQampHKdvtecItxUg==}
+    engines: {node: 20 || >=22}
+
   lru-cache@6.0.0:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
     engines: {node: '>=10'}
@@ -4447,11 +4430,6 @@ packages:
 
   node-gyp-build@4.8.4:
     resolution: {integrity: sha512-LA4ZjwlnUblHVgq0oBF3Jl/6h/Nvs5fzBLwdEF4nuxnFdsfajde4WfxtJr3CaiH+F6ewcIB/q4jQ4UzPyid+CQ==}
-    hasBin: true
-
-  nopt@8.0.0:
-    resolution: {integrity: sha512-1L/fTJ4UmV/lUxT2Uf006pfZKTvAgCF+chz+0OgBHO8u2Z67pE7AaAUUj7CJy0lXqHmymUvGFt6NE9R3HER0yw==}
-    engines: {node: ^18.17.0 || >=20.5.0}
     hasBin: true
 
   nopt@8.1.0:
@@ -5482,10 +5460,6 @@ packages:
 
   tar-stream@3.1.7:
     resolution: {integrity: sha512-qJj60CXt7IU1Ffyc3NJMjh6EkuCFej46zUqJ4J7pqYlThyd9bO0XBTmcOIhSzZJVWfsLks0+nle/j538YAW9RQ==}
-
-  tar@7.5.21:
-    resolution: {integrity: sha512-XdhtCvlMywwxpCW8YEq3lOXBJpUPTR2OHHcwLPO3HwsJqOHa2Ok/oJ7ruGzp+JrKoRPVCzJwAdEjqLW/vNRPHA==}
-    engines: {node: '>=18'}
 
   tar@7.5.22:
     resolution: {integrity: sha512-MFO/QzvtAOmJbkhOaCTvbGcFN9L9b+JunIsDwaKljSOdcLMea3NJ1k9Usz/rjdfSXTq4dfzfeS7W4p4YOAAHeA==}
@@ -6969,19 +6943,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@mapbox/node-pre-gyp@2.0.0':
-    dependencies:
-      consola: 3.4.2
-      detect-libc: 2.1.2
-      https-proxy-agent: 7.0.5
-      node-fetch: 2.7.0
-      nopt: 8.0.0
-      semver: 7.8.5
-      tar: 7.5.21
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
-
   '@mapbox/node-pre-gyp@2.0.3':
     dependencies:
       consola: 3.4.2
@@ -7351,11 +7312,11 @@ snapshots:
 
   '@rolldown/pluginutils@1.0.1': {}
 
-  '@rollup/pluginutils@5.4.0(rollup@4.62.2)':
+  '@rollup/pluginutils@5.5.1(rollup@4.62.2)':
     dependencies:
       '@types/estree': 1.0.9
       estree-walker: 2.0.2
-      picomatch: 4.0.4
+      picomatch: 4.0.7
     optionalDependencies:
       rollup: 4.62.2
 
@@ -7633,7 +7594,7 @@ snapshots:
       eslint-visitor-keys: 4.2.1
       espree: 10.4.0
       estraverse: 5.3.0
-      picomatch: 4.0.4
+      picomatch: 4.0.7
 
   '@tokenizer/inflate@0.4.1':
     dependencies:
@@ -7790,7 +7751,7 @@ snapshots:
       '@typescript-eslint/types': 8.61.1
       '@typescript-eslint/visitor-keys': 8.61.1
       debug: 4.4.3
-      minimatch: 10.2.5
+      minimatch: 10.2.6
       semver: 7.8.5
       tinyglobby: 0.2.17
       ts-api-utils: 2.5.0(typescript@6.0.3)
@@ -8023,35 +7984,35 @@ snapshots:
   '@vercel/nft@1.10.0(rollup@4.62.2)':
     dependencies:
       '@mapbox/node-pre-gyp': 2.0.3
-      '@rollup/pluginutils': 5.4.0(rollup@4.62.2)
-      acorn: 8.18.0
-      acorn-import-attributes: 1.9.5(acorn@8.18.0)
+      '@rollup/pluginutils': 5.5.1(rollup@4.62.2)
+      acorn: 8.19.0
+      acorn-import-attributes: 1.9.5(acorn@8.19.0)
       async-sema: 3.1.1
       bindings: 1.5.0
       estree-walker: 2.0.2
       glob: 13.0.6
       graceful-fs: 4.2.11
       node-gyp-build: 4.8.4
-      picomatch: 4.0.5
+      picomatch: 4.0.7
       resolve-from: 5.0.0
     transitivePeerDependencies:
       - encoding
       - rollup
       - supports-color
 
-  '@vercel/nft@1.10.2(rollup@4.62.2)':
+  '@vercel/nft@1.11.0(rollup@4.62.2)':
     dependencies:
-      '@mapbox/node-pre-gyp': 2.0.0
-      '@rollup/pluginutils': 5.4.0(rollup@4.62.2)
-      acorn: 8.17.0
-      acorn-import-attributes: 1.9.5(acorn@8.17.0)
+      '@mapbox/node-pre-gyp': 2.0.3
+      '@rollup/pluginutils': 5.5.1(rollup@4.62.2)
+      acorn: 8.19.0
+      acorn-import-attributes: 1.9.5(acorn@8.19.0)
       async-sema: 3.1.1
       bindings: 1.5.0
       estree-walker: 2.0.2
       glob: 13.0.6
       graceful-fs: 4.2.11
       node-gyp-build: 4.8.4
-      picomatch: 4.0.4
+      picomatch: 4.0.7
       resolve-from: 5.0.0
     transitivePeerDependencies:
       - encoding
@@ -8242,8 +8203,6 @@ snapshots:
 
   '@workflow/serde@4.1.0-beta.2': {}
 
-  abbrev@2.0.0: {}
-
   abbrev@3.0.1: {}
 
   accepts@2.0.0:
@@ -8253,29 +8212,17 @@ snapshots:
 
   acorn-es7-plugin@1.1.7: {}
 
-  acorn-import-attributes@1.9.5(acorn@8.17.0):
+  acorn-import-attributes@1.9.5(acorn@8.19.0):
     dependencies:
-      acorn: 8.17.0
+      acorn: 8.19.0
 
-  acorn-import-attributes@1.9.5(acorn@8.18.0):
+  acorn-jsx@5.3.2(acorn@8.19.0):
     dependencies:
-      acorn: 8.18.0
-
-  acorn-jsx@5.3.2(acorn@8.17.0):
-    dependencies:
-      acorn: 8.17.0
+      acorn: 8.19.0
 
   acorn@5.7.4: {}
 
-  acorn@8.17.0: {}
-
-  acorn@8.18.0: {}
-
-  agent-base@7.0.2:
-    dependencies:
-      debug: 4.4.3
-    transitivePeerDependencies:
-      - supports-color
+  acorn@8.19.0: {}
 
   agent-base@7.1.4: {}
 
@@ -9246,14 +9193,14 @@ snapshots:
 
   espree@10.4.0:
     dependencies:
-      acorn: 8.17.0
-      acorn-jsx: 5.3.2(acorn@8.17.0)
+      acorn: 8.19.0
+      acorn-jsx: 5.3.2(acorn@8.19.0)
       eslint-visitor-keys: 4.2.1
 
   espree@11.2.0:
     dependencies:
-      acorn: 8.17.0
-      acorn-jsx: 5.3.2(acorn@8.17.0)
+      acorn: 8.19.0
+      acorn-jsx: 5.3.2(acorn@8.19.0)
       eslint-visitor-keys: 5.0.1
 
   espurify@1.8.1:
@@ -9457,9 +9404,9 @@ snapshots:
     dependencies:
       pend: 1.2.0
 
-  fdir@6.5.0(picomatch@4.0.4):
+  fdir@6.5.0(picomatch@4.0.7):
     optionalDependencies:
-      picomatch: 4.0.4
+      picomatch: 4.0.7
 
   fecha@4.2.3: {}
 
@@ -9706,7 +9653,7 @@ snapshots:
 
   glob@13.0.6:
     dependencies:
-      minimatch: 10.2.5
+      minimatch: 10.2.6
       minipass: 7.1.3
       path-scurry: 2.0.2
 
@@ -9832,13 +9779,6 @@ snapshots:
       proxy-agent-negotiate: 1.1.0
     transitivePeerDependencies:
       - kerberos
-      - supports-color
-
-  https-proxy-agent@7.0.5:
-    dependencies:
-      agent-base: 7.0.2
-      debug: 4.4.3
-    transitivePeerDependencies:
       - supports-color
 
   https-proxy-agent@7.0.6:
@@ -10368,6 +10308,8 @@ snapshots:
 
   lru-cache@11.5.2: {}
 
+  lru-cache@11.5.3: {}
+
   lru-cache@6.0.0:
     dependencies:
       yallist: 4.0.0
@@ -10846,7 +10788,7 @@ snapshots:
 
   mlly@1.8.2:
     dependencies:
-      acorn: 8.17.0
+      acorn: 8.19.0
       pathe: 2.0.3
       pkg-types: 1.3.1
       ufo: 1.6.4
@@ -10916,10 +10858,6 @@ snapshots:
       formdata-polyfill: 4.0.10
 
   node-gyp-build@4.8.4: {}
-
-  nopt@8.0.0:
-    dependencies:
-      abbrev: 2.0.0
 
   nopt@8.1.0:
     dependencies:
@@ -11212,7 +11150,7 @@ snapshots:
 
   path-scurry@2.0.2:
     dependencies:
-      lru-cache: 11.5.2
+      lru-cache: 11.5.3
       minipass: 7.1.3
 
   path-to-regexp@6.3.0: {}
@@ -12144,14 +12082,6 @@ snapshots:
       - bare-abort-controller
       - react-native-b4a
 
-  tar@7.5.21:
-    dependencies:
-      '@isaacs/fs-minipass': 4.0.1
-      chownr: 3.0.0
-      minipass: 7.1.3
-      minizlib: 3.1.0
-      yallist: 5.0.0
-
   tar@7.5.22:
     dependencies:
       '@isaacs/fs-minipass': 4.0.1
@@ -12210,8 +12140,8 @@ snapshots:
 
   tinyglobby@0.2.17:
     dependencies:
-      fdir: 6.5.0(picomatch@4.0.4)
-      picomatch: 4.0.4
+      fdir: 6.5.0(picomatch@4.0.7)
+      picomatch: 4.0.7
 
   tinyrainbow@3.1.0: {}
 
