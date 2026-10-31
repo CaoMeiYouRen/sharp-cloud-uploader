@@ -72,7 +72,7 @@
     "typescript": "^6.0.3",
     "vercel": "^58.1.0",
     "vitest": "^4.1.11",
-    "wrangler": "^4.59.1"
+    "wrangler": "^4.107.1"
   },
   "config": {
     "commitizen": {
