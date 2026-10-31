@@ -114,7 +114,7 @@
     "dotenv": "^17.2.3",
     "file-type": "^22.2.0",
     "fs-extra": "^11.4.1",
-    "hono": "^4.13.11",
+    "hono": "^4.13.14",
     "isomorphic-unfetch": "^4.0.2",
     "lodash-es": "^4.17.23",
     "sharp": "^0.35.5",
