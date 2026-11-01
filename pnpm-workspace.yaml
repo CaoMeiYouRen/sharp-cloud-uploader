@@ -38,3 +38,5 @@ overrides:
   source-map-js: ^1.2.2
   "@vitest/mocker": ^4.1.12
   moment: ^2.31.0
+  zod@4: ^4.6.6
+  katex: ^0.18.2
