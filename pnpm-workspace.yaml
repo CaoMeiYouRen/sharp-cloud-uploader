@@ -40,3 +40,4 @@ overrides:
   moment: ^2.31.0
   zod@4: ^4.6.6
   katex: ^0.18.2
+  fast-xml-parser: ^5.12.0
